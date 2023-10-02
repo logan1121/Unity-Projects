@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class S : MonoBehaviour
+{
+    float leftSide;
+    float rightSide;
+    float topSide;
+    float bottomSide;
+    float movementSpeed;
+    float veriMovement;
+    // Start is called before the first frame update
+    void Start()
+    {
+        movementSpeed = 5;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+            veriMovement = Input.GetAxis("Vertical");
+
+            transform.Translate(veriMovement * Time.deltaTime, 0, 0);
+
+
+              //transform.Translate(movementSpeed, 0, 0);
+        
+    }
