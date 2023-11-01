@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovingPlayerInput : MonoBehaviour
+{
+    //Assigning pieces of code
+    float leftSide;
+    float rightSide;
+    float topSide;
+    float bottomSide;
+    float movementSpeed;
+    float horiMovement;
+    float vertMovement;
+    float jumpHeight = 10f;
+    Rigidbody playerRB;
+    // Start is called before the first frame update
+    void Start()
+    {
+        //setting the movementspeed and confirming the rigidbody on my game object
+        movementSpeed = 4;
+        playerRB = GetComponent<Rigidbody>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {   //the capsule game object is moving horizonally on the X axis using the A and D keys as well as the left and right keys.
+        horiMovement = Input.GetAxis("Horizontal");
+        //the capsule game object is moving vertically on the Z axis using the W and S keys as well as the up and down keys.
+        vertMovement = Input.GetAxis("Vertical");
+                            //Made sure that the movement is smooth using Time.deltaTime.
+        transform.Translate(horiMovement * Time.deltaTime * movementSpeed, 0, 0);
+        transform.Translate(0, 0, vertMovement * Time.deltaTime * movementSpeed);
+
+        //Making the capsule game object jump using the Space key button in the same C# script.
+        if (Input.GetButtonDown("Jump")){
+
+           //actually making my game object jump 
+            playerRB.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+        }
+    }
+}
+
